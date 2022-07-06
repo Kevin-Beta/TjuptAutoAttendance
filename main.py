@@ -47,12 +47,7 @@ class Bot:
     if cookies:
       return cookies
     else:
-      if self.login():
-        os.makedirs(os.path.dirname(self.cookies_path), 0o755, True)
-        with open(self.cookies_path, "wb") as f:
-          pickle.dump(self.session.cookies, f)
-        self.log(f"Cookies wrote to file: {self.cookies_path}")
-      return self.session.cookies
+      return requests.cookies.RequestsCookieJar()
   
   def login(self) -> bool:
     try_time = 5
@@ -64,6 +59,10 @@ class Bot:
       })
       if "logout.php" in resopnse.text:
         self.log(f"Logged in successfully")
+        os.makedirs(os.path.dirname(self.cookies_path), 0o755, True)
+        with open(self.cookies_path, "wb") as f:
+          pickle.dump(self.session.cookies, f)
+        self.log(f"Cookies wrote to file: {self.cookies_path}")
         return True
       try_time -= 1
       if try_time > 0:
@@ -131,6 +130,12 @@ class Bot:
   def auto_attendance_once(self) -> bool:
     try:
       response = self.session.get(f"{self.base_url}attendance.php")
+      if "login.php" in response.url:
+        self.log("Needed to log in")
+        if not self.login():
+          return False
+        response = self.session.get(f"{self.base_url}attendance.php")
+
       text = response.text
       if "今日已签到" in text:
         self.log("\"今日已签到\" found, already attended")
