@@ -26,5 +26,5 @@ jobs:
       continue-on-error: true
     - name: Auto Attendance
       run: |
-        python main.py -u "{{ secrets.USERNAME }}" -p "{{ secrets.PASSWORD}}"
+        python main.py -u "${{ secrets.USERNAME }}" -p "${{ secrets.PASSWORD }}"
       continue-on-error: true

@@ -88,6 +88,7 @@ class Bot:
   
   def save_douban_data(self) -> bool:
     try:
+      os.makedirs(os.path.dirname(self.douban_path), 0o755, True)
       with open(self.douban_path, "w", encoding="utf-8") as f:
         json.dump(self.douban_data, f, ensure_ascii=False, indent=1)
         self.log(f"Douban data wrote to file: {self.douban_path}")
