@@ -160,7 +160,7 @@ class Bot:
             "url_id": url_id,
             "captcha_image": captcha_image,
           })
-          self.log(f"Available choice found: {json.dumps(available_choices[-1])}")
+          self.log(f"Available choice found: {json.dumps(available_choices[-1], ensure_ascii=False)}")
 
       self.save_douban_data()
       
@@ -176,10 +176,10 @@ class Bot:
           "submit": "提交"
         }
         response = self.session.post(f"{self.base_url}attendance.php", data)
-        if "今日已签到" in response.text:
+        if "签到成功" in response.text:
           return True
         else:
-          self.log(f"\"今日已签到\" not found, response_text: {response.text}")
+          self.log(f"\"签到成功\" not found, response_text: {response.text}")
           return False
     except Exception as e:
       self.log(f"Error: {e}")
