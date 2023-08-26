@@ -2,7 +2,38 @@ name: Auto Attendance
 
 on:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '0 1 1 * *'
+    - cron: '15 2 2 * *'
+    - cron: '30 3 3 * *'
+    - cron: '45 4 4 * *'
+    - cron: '0 5 5 * *'
+    - cron: '15 6 6 * *'
+    - cron: '30 7 7 * *'
+    - cron: '45 8 8 * *'
+    - cron: '0 9 9 * *'
+    - cron: '15 10 10 * *'
+    - cron: '30 11 11 * *'
+    - cron: '45 12 12 * *'
+    - cron: '0 13 13 * *'
+    - cron: '15 14 14 * *'
+    - cron: '30 15 15 * *'
+    - cron: '45 16 16 * *'
+    - cron: '0 17 17 * *'
+    - cron: '15 18 18 * *'
+    - cron: '30 19 19 * *'
+    - cron: '45 20 20 * *'
+    - cron: '0 21 21 * *'
+    - cron: '15 22 22 * *'
+    - cron: '30 23 23 * *'
+    - cron: '0 1 24 * *'
+    - cron: '15 2 25 * *'
+    - cron: '30 3 26 * *'
+    - cron: '45 4 27 * *'
+    - cron: '0 5 28 * *'
+    - cron: '15 6 29 * *'
+    - cron: '30 7 30 * *'
+    - cron: '45 8 31 * *'
+
   workflow_dispatch:
 
 jobs:

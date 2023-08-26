@@ -23,7 +23,23 @@ class Bot:
 
     self.session = requests.Session()
     self.session.headers.update({
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.0.0 Safari/537.36"
+    'authority': 'tjupt.org',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+    'cache-control': 'max-age=0',
+    'content-type': 'application/x-www-form-urlencoded',
+    'dnt': '1',
+    # 'origin': 'https://tjupt.org',
+    # 'referer': 'https://tjupt.org/login.php',
+    'sec-ch-ua': '"Chromium";v="116", "Not)A;Brand";v="24", "Microsoft Edge";v="116"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.54"
     })
     self.session.cookies = self.load_cookies()
 
@@ -56,6 +72,7 @@ class Bot:
       resopnse = self.session.post(f"{self.base_url}takelogin.php", {
         "username": self.username,
         "password": self.password,
+        "logout": "7days"
       })
       if "logout.php" in resopnse.text:
         self.log(f"Logged in successfully")
